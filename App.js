@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import SplashScreen from './SplashScreen';
+import SplashScreen from "./SplashScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import AsyncStorage from "@react-native-async-storage/async-storage";
@@ -268,113 +268,116 @@ const App = () => {
 
   return (
     <>
-    {showSplash ? (
-      <SplashScreen onFinish={() => setShowSplash(false)} />
-    ) : (
-    <NavigationContainer>
-      <Stack.Navigator initialRouteName="UpcomingJobs">
-        <Stack.Screen name="UpcomingJobs">
-          {(props) => (
-            <UpcomingJobs
-              {...props}
-              customerName={customerName}
-              setCustomerName={setCustomerName}
-              customerPhone={customerPhone}
-              setCustomerPhone={setCustomerPhone}
-              customerAddress={customerAddress}
-              setCustomerAddress={setCustomerAddress}
-              jobPrice={jobPrice}
-              setJobPrice={setJobPrice}
-              jobNotes={jobNotes}
-              setJobNotes={setJobNotes}
-              scheduledJobs={scheduledJobs}
-              setScheduledJobs={setScheduledJobs}
-              selectedDate={selectedDate}
-              setSelectedDate={setSelectedDate}
-              jobName={jobName}
-              setJobName={setJobName}
-              jobDescription={jobDescription}
-              setJobDescription={setJobDescription}
-              selectedTime={selectedTime}
-              setSelectedTime={setSelectedTime}
-              jobStatus={jobStatus}
-              setJobStatus={setJobStatus}
-              deleteJob={deleteJob}
-              updateJob={updateJob}
-              // NEW: Pass customer data
-              customers={customers}
-              selectedCustomer={selectedCustomer}
-              setSelectedCustomer={setSelectedCustomer}
-              invoices={invoices}
+      {showSplash ? (
+        <SplashScreen onFinish={() => setShowSplash(false)} />
+      ) : (
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="UpcomingJobs">
+            <Stack.Screen name="UpcomingJobs">
+              {(props) => (
+                <UpcomingJobs
+                  {...props}
+                  customerName={customerName}
+                  setCustomerName={setCustomerName}
+                  customerPhone={customerPhone}
+                  setCustomerPhone={setCustomerPhone}
+                  customerAddress={customerAddress}
+                  setCustomerAddress={setCustomerAddress}
+                  jobPrice={jobPrice}
+                  setJobPrice={setJobPrice}
+                  jobNotes={jobNotes}
+                  setJobNotes={setJobNotes}
+                  scheduledJobs={scheduledJobs}
+                  setScheduledJobs={setScheduledJobs}
+                  selectedDate={selectedDate}
+                  setSelectedDate={setSelectedDate}
+                  jobName={jobName}
+                  setJobName={setJobName}
+                  jobDescription={jobDescription}
+                  setJobDescription={setJobDescription}
+                  selectedTime={selectedTime}
+                  setSelectedTime={setSelectedTime}
+                  jobStatus={jobStatus}
+                  setJobStatus={setJobStatus}
+                  deleteJob={deleteJob}
+                  updateJob={updateJob}
+                  // NEW: Pass customer data
+                  customers={customers}
+                  selectedCustomer={selectedCustomer}
+                  setSelectedCustomer={setSelectedCustomer}
+                  invoices={invoices}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen name="JobDetails">
+              {(props) => (
+                <JobDetails
+                  {...props}
+                  deleteJob={deleteJob}
+                  updateJob={updateJob}
+                  // NEW: Pass invoice functions
+                  createInvoice={createInvoice}
+                  invoices={invoices}
+                  customers={customers}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen
+              name="EditJob"
+              component={EditJob}
+              options={{ title: "Edit Job" }}
             />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="JobDetails">
-          {(props) => (
-            <JobDetails
-              {...props}
-              deleteJob={deleteJob}
-              updateJob={updateJob}
-              // NEW: Pass invoice functions
-              createInvoice={createInvoice}
-              invoices={invoices}
-              customers={customers}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen
-          name="EditJob"
-          component={EditJob}
-          options={{ title: "Edit Job" }}
-        />
-        {/* NEW: Customer screens */}
-        <Stack.Screen name="Customers" options={{ title: "Customers" }}>
-          {(props) => (
-            <CustomersScreen
-              {...props}
-              customers={customers}
-              deleteCustomer={deleteCustomer}
-              scheduledJobs={scheduledJobs}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen
-          name="CustomerDetails"
-          options={{ title: "Customer Details" }}
-        >
-          {(props) => (
-            <CustomerDetails
-              {...props}
-              updateCustomer={updateCustomer}
-              deleteCustomer={deleteCustomer}
-              scheduledJobs={scheduledJobs}
-              invoices={invoices}
-            />
-          )}
-        </Stack.Screen>
-        <Stack.Screen name="EditCustomer" options={{ title: "Edit Customer" }}>
-          {(props) => (
-            <EditCustomer
-              {...props}
-              updateCustomer={updateCustomer}
-              addCustomer={addCustomer}
-            />
-          )}
-        </Stack.Screen>
-        {/* NEW: Invoice screen */}
-        <Stack.Screen name="Invoice" options={{ title: "Invoice" }}>
-          {(props) => (
-            <InvoiceScreen
-              {...props}
-              updateInvoiceStatus={updateInvoiceStatus}
-            />
-          )}
-        </Stack.Screen>
-      </Stack.Navigator>
-    </NavigationContainer>
-  )}
-  </>
-);
+            {/* NEW: Customer screens */}
+            <Stack.Screen name="Customers" options={{ title: "Customers" }}>
+              {(props) => (
+                <CustomersScreen
+                  {...props}
+                  customers={customers}
+                  deleteCustomer={deleteCustomer}
+                  scheduledJobs={scheduledJobs}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen
+              name="CustomerDetails"
+              options={{ title: "Customer Details" }}
+            >
+              {(props) => (
+                <CustomerDetails
+                  {...props}
+                  updateCustomer={updateCustomer}
+                  deleteCustomer={deleteCustomer}
+                  scheduledJobs={scheduledJobs}
+                  invoices={invoices}
+                />
+              )}
+            </Stack.Screen>
+            <Stack.Screen
+              name="EditCustomer"
+              options={{ title: "Edit Customer" }}
+            >
+              {(props) => (
+                <EditCustomer
+                  {...props}
+                  updateCustomer={updateCustomer}
+                  addCustomer={addCustomer}
+                />
+              )}
+            </Stack.Screen>
+            {/* NEW: Invoice screen */}
+            <Stack.Screen name="Invoice" options={{ title: "Invoice" }}>
+              {(props) => (
+                <InvoiceScreen
+                  {...props}
+                  updateInvoiceStatus={updateInvoiceStatus}
+                />
+              )}
+            </Stack.Screen>
+          </Stack.Navigator>
+        </NavigationContainer>
+      )}
+    </>
+  );
 };
 
 const styles = StyleSheet.create({

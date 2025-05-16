@@ -287,7 +287,7 @@ const styles = StyleSheet.create({
     color: "#007AFF",
   },
   summaryLabel: {
-    fontSize: 12,
+    fontSize: 10,
     color: "#666",
     marginTop: 5,
   },
