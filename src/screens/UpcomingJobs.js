@@ -123,20 +123,26 @@ const UpcomingJobs = ({
   };
 
   // Show time picker
-  const showTimePicker = () => {
-    const timeOptions = generateTimeOptions();
-    const buttons = [
-      ...timeOptions.map((time) => ({
-        text: time,
-        onPress: () => setSelectedTime(time),
-      })),
-      { text: "Cancel", style: "cancel" },
-    ];
+ const showTimePicker = () => {
+  // For Android, create a smaller set of times (morning, afternoon, evening)
+  const simplifiedTimes = [
+    "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM",
+    "12:00 PM", "1:00 PM", "2:00 PM", "3:00 PM", 
+    "4:00 PM", "5:00 PM", "6:00 PM", "7:00 PM"
+  ];
+  
+  const buttons = [
+    ...simplifiedTimes.map((time) => ({
+      text: time,
+      onPress: () => setSelectedTime(time),
+    })),
+    { text: "Cancel", style: "cancel" },
+  ];
 
-    Alert.alert("Select Time", "Choose a time for this job:", buttons, {
-      cancelable: true,
-    });
-  };
+  Alert.alert("Select Time", "Choose a time for this job:", buttons, {
+    cancelable: true,
+  });
+};
 
   // Show status picker
   const showStatusPicker = () => {
